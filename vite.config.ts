@@ -16,7 +16,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: '/Project-Aidtrack/',
+  base: '/Project-AidTrack/',
 
   plugins: [
     figmaAssetResolver(),
