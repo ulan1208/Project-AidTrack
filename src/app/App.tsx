@@ -2826,7 +2826,7 @@ export default function App() {
     return (
       <>
         <Toaster richColors position="top-right" />
-        <AdminLayout page={page} nav={nav} db={db} userName="Ahmad Santoso">
+        <AdminLayout page={page} nav={nav} db={db} userName="Ulan">
           {page === "admin-dashboard" && <AdminDashboard db={db} />}
           {page === "admin-penerima" && <AdminPenerima db={db} setDb={setDb} />}
           {page === "admin-bantuan" && <AdminBantuan db={db} setDb={setDb} />}
