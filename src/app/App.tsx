@@ -95,27 +95,27 @@ const NOMINAL_MAP: Record<string, number> = {
   "Bansos Reguler": 1200000, "Bantuan Langsung Tunai": 2500000,
 };
 const FIRST_NAMES = [
-  "Ahmad","Budi","Dedi","Eko","Fauzi","Hendra","Irwan","Joko","Karto","Lukman",
-  "Siti","Dewi","Nur","Rina","Yanti","Ani","Dina","Fitri","Gita","Putri",
-  "Rudi","Surya","Tono","Wahyu","Maya","Indah","Hana","Zainal","Yudi","Farida",
+  "Ahmad", "Budi", "Dedi", "Eko", "Fauzi", "Hendra", "Irwan", "Joko", "Karto", "Lukman",
+  "Siti", "Dewi", "Nur", "Rina", "Yanti", "Ani", "Dina", "Fitri", "Gita", "Putri",
+  "Rudi", "Surya", "Tono", "Wahyu", "Maya", "Indah", "Hana", "Zainal", "Yudi", "Farida",
 ];
 const LAST_NAMES = [
-  "Santoso","Rahayu","Wijaya","Kusuma","Pratama","Hartono",
-  "Setiawan","Gunawan","Susanto","Wibowo","Nugroho","Saputra",
-  "Hidayat","Firmansyah","Ramadan","Anwar","Halim","Handoko",
+  "Santoso", "Rahayu", "Wijaya", "Kusuma", "Pratama", "Hartono",
+  "Setiawan", "Gunawan", "Susanto", "Wibowo", "Nugroho", "Saputra",
+  "Hidayat", "Firmansyah", "Ramadan", "Anwar", "Halim", "Handoko",
 ];
-const JALAN = ["Merdeka","Sudirman","Diponegoro","Pahlawan","Mawar","Melati","Kenanga","Dahlia"];
+const JALAN = ["Merdeka", "Sudirman", "Diponegoro", "Pahlawan", "Mawar", "Melati", "Kenanga", "Dahlia"];
 const CATATAN_LIST = [
-  "Keluarga tidak mampu","Lansia tidak produktif","Difabel berat",
-  "Kepala keluarga meninggal","PHK akibat pandemi","Buruh tani miskin",
-  "Janda dengan anak banyak","Rumah tidak layak huni",
+  "Keluarga tidak mampu", "Lansia tidak produktif", "Difabel berat",
+  "Kepala keluarga meninggal", "PHK akibat pandemi", "Buruh tani miskin",
+  "Janda dengan anak banyak", "Rumah tidak layak huni",
 ];
 const PETUGAS_LIST = [
-  "Ahmad Santoso","Siti Rahayu","Budi Prakoso",
-  "Dewi Kusuma","Hendra Wijaya","Nur Indah",
+  "Ahmad Santoso", "Siti Rahayu", "Budi Prakoso",
+  "Dewi Kusuma", "Hendra Wijaya", "Nur Indah",
 ];
 const STATUS_FLOW: StatusBantuan[] = [
-  "Menunggu Verifikasi","Diproses","Disetujui","Disalurkan","Ditolak",
+  "Menunggu Verifikasi", "Diproses", "Disetujui", "Disalurkan", "Ditolak",
 ];
 const C = {
   darkRose: "#A44F6A",
@@ -148,7 +148,7 @@ const fmtCurrency = (n: number) =>
   new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(n);
 
 const makeTimeline = (statusIdx: number): TimelineItem[] => {
-  const stages = ["Pengajuan","Verifikasi","Diproses","Disetujui","Disalurkan"];
+  const stages = ["Pengajuan", "Verifikasi", "Diproses", "Disetujui", "Disalurkan"];
   const reached = statusIdx === 4 ? 2 : statusIdx + 1;
   return stages.map((tahap, i) => ({
     tahap,
@@ -209,7 +209,7 @@ function initDB(): DB {
       tanggal: dateAgo(i * 2 + 1),
       catatan: CATATAN_LIST[i % CATATAN_LIST.length],
       petugas: PETUGAS_LIST[i % PETUGAS_LIST.length],
-      dokumen: ["KTP","KK","Surat Keterangan Tidak Mampu"],
+      dokumen: ["KTP", "KK", "Surat Keterangan Tidak Mampu"],
       timeline: makeTimeline(statusIdx),
     };
   });
@@ -611,7 +611,6 @@ function CitizenLayout({ page, nav, children, db }: {
     { page: "citizen-notifikasi" as Page, label: "Notifikasi", icon: Bell },
     { page: "citizen-profil" as Page, label: "Profil", icon: User },
   ];
-
   return (
     <div className="min-h-screen bg-[#FAF3F6] flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
       {/* Top bar */}
@@ -1190,7 +1189,7 @@ function AdminPenerima({ db, setDb }: { db: DB; setDb: (d: DB) => void }) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#F1D8E2]">
-                {["NIK","Nama","Kecamatan","Kelurahan","Status","Aksi"].map(h => (
+                {["NIK", "Nama", "Kecamatan", "Kelurahan", "Status", "Aksi"].map(h => (
                   <th key={h} className="text-left text-xs font-semibold text-[#64748B] px-4 py-3">{h}</th>
                 ))}
               </tr>
@@ -1346,7 +1345,7 @@ function AdminBantuan({ db, setDb }: { db: DB; setDb: (d: DB) => void }) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#F1D8E2]">
-                {["Nama Bantuan","Jenis","Nominal","Penerima","Tgl Penyaluran","Status","Aksi"].map(h => (
+                {["Nama Bantuan", "Jenis", "Nominal", "Penerima", "Tgl Penyaluran", "Status", "Aksi"].map(h => (
                   <th key={h} className="text-left text-xs font-semibold text-[#64748B] px-4 py-3">{h}</th>
                 ))}
               </tr>
@@ -1470,7 +1469,7 @@ function AdminPengajuan({ db, nav }: { db: DB; nav: (p: Page) => void }) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#F1D8E2]">
-                {["ID","Nama","NIK","Kecamatan","Jenis Bantuan","Tgl Pengajuan","Status","Aksi"].map(h => (
+                {["ID", "Nama", "NIK", "Kecamatan", "Jenis Bantuan", "Tgl Pengajuan", "Status", "Aksi"].map(h => (
                   <th key={h} className="text-left text-xs font-semibold text-[#64748B] px-4 py-3">{h}</th>
                 ))}
               </tr>
@@ -1808,7 +1807,7 @@ function AdminLaporan({ db }: { db: DB }) {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#F1D8E2]">
-                {["ID","Nama","Jenis","Kecamatan","Tanggal","Status"].map(h => (
+                {["ID", "Nama", "Jenis", "Kecamatan", "Tanggal", "Status"].map(h => (
                   <th key={h} className="text-left text-xs font-semibold text-[#64748B] px-4 py-3">{h}</th>
                 ))}
               </tr>
@@ -1879,7 +1878,7 @@ function AdminNotifikasi({ db, setDb }: { db: DB; setDb: (d: DB) => void }) {
 }
 
 function AdminPengaturan() {
-  const [form, setForm] = useState({ nama: "Ahmad Santoso", email: "admin@dinsos.bogorkota.go.id", jabatan: "Koordinator Bansos", phone: "0811234567", password: "" });
+  const [form, setForm] = useState({ nama: "Ulan", email: "admin@dinsos.bogorkota.go.id", jabatan: "Koordinator Bansos", phone: "0811234567", password: "" });
   const f = (k: string) => (v: string) => setForm(p => ({ ...p, [k]: v }));
   return (
     <div className="space-y-5 max-w-2xl">
@@ -1906,7 +1905,7 @@ function AdminPengaturan() {
       </Card>
       <Card className="p-6">
         <h3 className="font-semibold text-[#1F2937] mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Preferensi Notifikasi</h3>
-        {["Notifikasi pengajuan baru","Notifikasi status berubah","Notifikasi laporan harian","Notifikasi sistem"].map(item => (
+        {["Notifikasi pengajuan baru", "Notifikasi status berubah", "Notifikasi laporan harian", "Notifikasi sistem"].map(item => (
           <div key={item} className="flex items-center justify-between py-3 border-b border-[#F1D8E2] last:border-0">
             <span className="text-sm text-[#1F2937]">{item}</span>
             <button className="w-10 h-6 rounded-full bg-[#D47A9A] relative transition-all cursor-pointer">
@@ -2267,7 +2266,7 @@ function StakeholderWilayah() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-[#F1D8E2]">
-                {["Kelurahan","Penerima","Disalurkan","Ditolak","Realisasi"].map(h => (
+                {["Kelurahan", "Penerima", "Disalurkan", "Ditolak", "Realisasi"].map(h => (
                   <th key={h} className="text-left text-xs font-semibold text-[#64748B] px-4 py-3">{h}</th>
                 ))}
               </tr>
@@ -2744,9 +2743,9 @@ function CitizenProfil({ nav, db, setDb }: { nav: (p: Page) => void; db: DB; set
 
       {activeTab === "password" && (
         <div className="bg-white rounded-2xl p-4 border border-[#F1D8E2] space-y-3">
-          <FormField label="Password Lama"><Input value="" onChange={() => {}} type="password" placeholder="Masukkan password lama" /></FormField>
-          <FormField label="Password Baru"><Input value="" onChange={() => {}} type="password" placeholder="Min. 8 karakter" /></FormField>
-          <FormField label="Konfirmasi Password Baru"><Input value="" onChange={() => {}} type="password" placeholder="Ulangi password baru" /></FormField>
+          <FormField label="Password Lama"><Input value="" onChange={() => { }} type="password" placeholder="Masukkan password lama" /></FormField>
+          <FormField label="Password Baru"><Input value="" onChange={() => { }} type="password" placeholder="Min. 8 karakter" /></FormField>
+          <FormField label="Konfirmasi Password Baru"><Input value="" onChange={() => { }} type="password" placeholder="Ulangi password baru" /></FormField>
           <Btn variant="primary" className="w-full" onClick={() => toast.success("Password berhasil diubah")}>Ubah Password</Btn>
         </div>
       )}
